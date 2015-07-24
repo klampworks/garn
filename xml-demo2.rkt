@@ -1,6 +1,7 @@
 #lang at-exp racket
 (require xml xml/path)
 (require racket/port)
+(require srfi/26)
 
 (define input (port->string (open-input-file "input")))
 (define input-wrapped
@@ -15,11 +16,16 @@
 (struct item (title price location condition))
 
 (map (λ (n)
-        (define i (item 
-            (se-path* '(title) n)
-            (se-path* '(currentPrice) n)
-            (se-path* '(location) n)
-            (se-path* '(conditionDisplayName) n)))
+        (define i 
+          (apply item 
+                 (map (cut se-path* <> n) '((title) 
+                                            (currentPrice) 
+                                            (location) 
+                                            (conditionDisplayName)))))
+            ;(se-path* '(title) n)
+            ;(se-path* '(currentPrice) n)
+            ;(se-path* '(location) n)
+            ;(se-path* '(conditionDisplayName) n)))
         (displayln "########################################")
         (displayln (item-title i))
 ;        (when (and title price)
