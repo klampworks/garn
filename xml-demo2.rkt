@@ -12,16 +12,19 @@
 
 (define items (se-path*/list '(item-wrapper) input-x))
 
+(struct item (title price location condition))
+
 (map (λ (n)
-        (define title (se-path* '(title) n))
-        (define price (se-path* '(currentPrice) n))
-        (define loc (se-path* '(location) n))
-        (define con (se-path* '(conditionDisplayName) n))
+        (define i (item 
+            (se-path* '(title) n)
+            (se-path* '(currentPrice) n)
+            (se-path* '(location) n)
+            (se-path* '(conditionDisplayName) n)))
         (displayln "########################################")
-;        (displayln n)
-        (when (and title price)
-          (printf "Title: ~a~nPrice: ~a~nLocation: ~a~nCondition: ~a~n"
-                  title price loc con))
+        (displayln (item-title i))
+;        (when (and title price)
+;          (printf "Title: ~a~nPrice: ~a~nLocation: ~a~nCondition: ~a~n"
+;                  title price loc con))
         (displayln "########################################")
         ) items)
 
