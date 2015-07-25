@@ -15,13 +15,15 @@
 
 (struct item (title price location condition))
 
+(define (xml->item n)
+  (apply item 
+         (map (cut se-path* <> n) '((title) 
+                                    (currentPrice) 
+                                    (location) 
+                                    (conditionDisplayName)))))
+
 (map (λ (n)
-        (define i 
-          (apply item 
-                 (map (cut se-path* <> n) '((title) 
-                                            (currentPrice) 
-                                            (location) 
-                                            (conditionDisplayName)))))
+        (define i (xml->item n))
             ;(se-path* '(title) n)
             ;(se-path* '(currentPrice) n)
             ;(se-path* '(location) n)
