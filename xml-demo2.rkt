@@ -24,15 +24,8 @@
 
 (map (λ (n)
         (define i (xml->item n))
-            ;(se-path* '(title) n)
-            ;(se-path* '(currentPrice) n)
-            ;(se-path* '(location) n)
-            ;(se-path* '(conditionDisplayName) n)))
         (displayln "########################################")
         (displayln (item-title i))
-;        (when (and title price)
-;          (printf "Title: ~a~nPrice: ~a~nLocation: ~a~nCondition: ~a~n"
-;                  title price loc con))
         (displayln "########################################")
         ) items)
 
