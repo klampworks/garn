@@ -13,19 +13,21 @@
 
 (define items (se-path*/list '(item-wrapper) input-x))
 
-(struct item (title price location condition))
+(struct item (title price location condition url))
 
 (define (xml->item n)
   (apply item 
          (map (cut se-path* <> n) '((title) 
                                     (currentPrice) 
                                     (location) 
-                                    (conditionDisplayName)))))
+                                    (conditionDisplayName)
+                                    (viewItemURL)))))
 
 (map (λ (n)
         (define i (xml->item n))
         (displayln "########################################")
         (displayln (item-title i))
+        (displayln (item-url i))
         (displayln "########################################")
         ) items)
 
