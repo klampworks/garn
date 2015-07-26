@@ -4,6 +4,7 @@
 (require srfi/26)
 
 (define input (port->string (open-input-file "input")))
+
 (define input-wrapped
   (let ([t
           (regexp-replace* "<item>" input "<item-wrapper><item>")])
@@ -23,11 +24,13 @@
                                     (conditionDisplayName)
                                     (viewItemURL)))))
 
+(define xml-items (map xml->item items))
+
 (map (λ (n)
-        (define i (xml->item n))
+        ;(define i (xml->item n))
         (displayln "########################################")
-        (displayln (item-title i))
-        (displayln (item-url i))
+        (displayln (item-title n))
+        (displayln (item-url n))
         (displayln "########################################")
-        ) items)
+        ) xml-items)
 
