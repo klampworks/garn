@@ -26,11 +26,8 @@
 
 (define xml-items (map xml->item items))
 
-(map (λ (n)
-        ;(define i (xml->item n))
+(for ([n xml-items])
         (displayln "########################################")
         (displayln (item-title n))
         (displayln (item-url n))
-        (displayln "########################################")
-        ) xml-items)
-
+        (displayln "########################################"))
