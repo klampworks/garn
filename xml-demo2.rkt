@@ -18,9 +18,9 @@
 
 (define (xml->item n)
   (apply item 
-         (map (cut se-path* <> n) '((title) 
-                                    (currentPrice) 
-                                    (location) 
+         (map (cut se-path* <> n) '((title)
+                                    (currentPrice)
+                                    (location)
                                     (conditionDisplayName)
                                     (viewItemURL)))))
 
