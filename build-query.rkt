@@ -15,4 +15,13 @@
 (define (add-keyword url keyword)
   (string-append url "&keywords=" (uri-encode keyword)))
 
-(displayln (add-keyword base-url "harry potter"))
+(define filter-counter
+  (let ([n -1])
+    (λ () (set! n (add1 n)) n)))
+
+(define (add-filter url name value)
+  (let ([f (format "&itemFilter(~a)" (filter-counter))])
+    (string-append url f ".name=" name f ".value=" value)))
+
+(define a (add-filter base-url "Condition" "New"))
+(displayln (add-filter a "Currency" "GBP"))
