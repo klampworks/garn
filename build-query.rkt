@@ -23,5 +23,8 @@
   (let ([f (format "&itemFilter(~a)" (filter-counter))])
     (string-append url f ".name=" name f ".value=" value)))
 
+(define (add-filter-gbp url)
+  (add-filter url "Currency" "GBP"))
+
 (define a (add-filter base-url "Condition" "New"))
-(displayln (add-filter a "Currency" "GBP"))
+(displayln (add-filter-gbp a))
