@@ -1,5 +1,9 @@
 #lang racket
 (require net/uri-codec)
+(provide base-url)
+(provide add-keyword)
+(provide add-filter)
+(provide add-filter-gbp)
 
 (define API-KEY (getenv "EBAY_API_KEY"))
 
@@ -25,6 +29,3 @@
 
 (define (add-filter-gbp url)
   (add-filter url "Currency" "GBP"))
-
-(define a (add-filter base-url "Condition" "New"))
-(displayln (add-filter-gbp a))
