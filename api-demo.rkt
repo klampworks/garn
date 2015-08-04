@@ -4,4 +4,4 @@
 (require "parse-xml.rkt")
 
 (define q (add-filter-gbp (add-keyword base-url "harry potter")))
-(displayln q)
+(displayln (get-url q))
