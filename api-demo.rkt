@@ -3,7 +3,7 @@
 (require "get-url.rkt")
 (require "parse-xml.rkt")
 
-(define q (add-filter-gbp (add-keyword base-url "harry potter")))
+(define q (add-filter-used (add-filter-gbp (add-keyword base-url "harry potter"))))
 (define xml (get-url q))
 (define items (xml->items xml))
 

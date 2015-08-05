@@ -4,6 +4,7 @@
 (provide add-keyword)
 (provide add-filter)
 (provide add-filter-gbp)
+(provide add-filter-used)
 
 (define API-KEY (getenv "EBAY_API_KEY"))
 
@@ -29,3 +30,6 @@
 
 (define (add-filter-gbp url)
   (add-filter url "Currency" "GBP"))
+
+(define (add-filter-used url)
+  (add-filter url "Condition" "Used"))
