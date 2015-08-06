@@ -11,11 +11,13 @@
 (define base-url 
   (string-append 
     "http://svcs.ebay.com/services/search/FindingService/v1?"
-    "OPERATION-NAME=findItemsByKeywords"
     "&SERVICE-VERSION=1.0.0"
     "&SECURITY-APPNAME=" API-KEY
     "&RESPONSE-DATA-FORMAT=XML"
     "&REST-PAYLOAD"))
+
+(define (add-op url op)
+  (string-append url "&OPERATION-NAME=" op))
 
 (define (add-keyword url keyword)
   (string-append url "&keywords=" (uri-encode keyword)))
