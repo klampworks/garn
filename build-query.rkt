@@ -5,7 +5,6 @@
 (provide add-filter)
 (provide add-filter-gbp)
 (provide add-filter-used)
-(provide add-op-keyword)
 
 (define API-KEY (getenv "EBAY_API_KEY"))
 
@@ -15,16 +14,11 @@
     "SERVICE-VERSION=1.0.0"
     "&SECURITY-APPNAME=" API-KEY
     "&RESPONSE-DATA-FORMAT=XML"
-    "&REST-PAYLOAD"))
-
-(define (add-op url op)
-  (string-append url "&OPERATION-NAME=" op))
+    "&REST-PAYLOAD"
+    "&OPERATION-NAME=findItemsByKeywords"))
 
 (define (add-keyword url keyword)
   (string-append url "&keywords=" (uri-encode keyword)))
-
-(define (add-op-keyword url)
-  (add-op url "findItemsByKeywords"))
 
 (define filter-counter
   (let ([n -1])
