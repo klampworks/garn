@@ -5,13 +5,14 @@
 (provide add-filter)
 (provide add-filter-gbp)
 (provide add-filter-used)
+(provide add-op-keyword)
 
 (define API-KEY (getenv "EBAY_API_KEY"))
 
 (define base-url 
   (string-append 
     "http://svcs.ebay.com/services/search/FindingService/v1?"
-    "&SERVICE-VERSION=1.0.0"
+    "SERVICE-VERSION=1.0.0"
     "&SECURITY-APPNAME=" API-KEY
     "&RESPONSE-DATA-FORMAT=XML"
     "&REST-PAYLOAD"))
@@ -21,6 +22,9 @@
 
 (define (add-keyword url keyword)
   (string-append url "&keywords=" (uri-encode keyword)))
+
+(define (add-op-keyword url)
+  (add-op url "findItemsByKeywords"))
 
 (define filter-counter
   (let ([n -1])
