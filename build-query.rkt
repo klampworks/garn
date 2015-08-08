@@ -3,7 +3,6 @@
 (provide base-url)
 (provide add-keyword)
 (provide add-filter)
-(provide add-filter-gbp)
 (provide add-filter-used)
 
 (define API-KEY (getenv "EBAY_API_KEY"))
@@ -27,9 +26,6 @@
 (define (add-filter url name value)
   (let ([f (format "&itemFilter(~a)" (filter-counter))])
     (string-append url f ".name=" name f ".value=" value)))
-
-(define (add-filter-gbp url)
-  (add-filter url "Currency" "GBP"))
 
 (define (add-filter-used url)
   (add-filter url "Condition" "Used"))
