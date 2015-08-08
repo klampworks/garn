@@ -17,4 +17,5 @@
         (displayln (item-location n))
         (displayln (item-condition n))
         (displayln (item-url n))
+        (displayln (item-shipto n))
         (displayln "########################################"))

@@ -5,15 +5,20 @@
 (provide xml->items)
 (provide (struct-out item))
 
-(struct item (title price location condition url))
+(struct item (title price location condition url shipto))
+
+(define (mk-item t p l c u [s '()])
+  (item t p l c u s))
 
 (define (xml->item n)
-  (apply item 
-         (map (cut se-path* <> n) '((title)
+  (apply mk-item 
+         (append
+           (map (cut se-path* <> n) '((title)
                                     (currentPrice)
                                     (location)
                                     (conditionDisplayName)
-                                    (viewItemURL)))))
+                                    (viewItemURL))) 
+           (list (se-path*/list '(shipToLocations) n)))))
 
 (define (wrap-items xml-s)
   (let ([t
