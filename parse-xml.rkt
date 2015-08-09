@@ -6,10 +6,10 @@
 (provide (struct-out item))
 (provide ship-to-uk-only)
 
-(struct item (title price location condition url shipto))
+(struct item (title price location condition url shipto currency))
 
-(define (mk-item t p l c u [s '()])
-  (item t p l c u s))
+(define (mk-item t p l c u cu [s '()])
+  (item t p l c u s cu))
 
 (define (xml->item n)
   (apply mk-item 
@@ -19,6 +19,7 @@
                                     (location)
                                     (conditionDisplayName)
                                     (viewItemURL))) 
+           (list (se-path* '(currentPrice #:currencyId) n))
            (list (se-path*/list '(shipToLocations) n)))))
 
 (define (ship-to-uk-only items)
