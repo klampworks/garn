@@ -8,7 +8,7 @@
       (add-keyword base-url "shellcoder")))
 
 (define xml (get-url q))
-(define items (xml->items xml))
+(define items (ship-to-uk-only (xml->items xml)))
 
 (for ([n items])
         (displayln "########################################")

@@ -4,6 +4,7 @@
 (require srfi/26)
 (provide xml->items)
 (provide (struct-out item))
+(provide ship-to-uk-only)
 
 (struct item (title price location condition url shipto))
 
@@ -19,6 +20,15 @@
                                     (conditionDisplayName)
                                     (viewItemURL))) 
            (list (se-path*/list '(shipToLocations) n)))))
+
+(define (ship-to-uk-only items)
+  (filter (λ (i)
+             (foldr (λ (c acc) (or acc
+                                   (string=? "GB" c)
+                                   (string=? "UK" c)
+                                   (string=? "Worldwide" c)))
+                    #f (item-shipto i)))
+          items))
 
 (define (wrap-items xml-s)
   (let ([t
