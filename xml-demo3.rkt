@@ -4,7 +4,11 @@
 
 (define input (port->string (open-input-file "input")))
 
-(define items (ship-to-uk-only (xml->items input)))
+(define items
+  (convert-currency
+    (ship-to-uk-only
+      (xml->items input))))
+
 (for ([n  items])
         (displayln "########################################")
         (displayln (item-title n))
