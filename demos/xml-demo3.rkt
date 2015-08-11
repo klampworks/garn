@@ -1,18 +1,13 @@
 #lang racket
-(require "build-query.rkt")
-(require "get-url.rkt")
-(require "parse-xml.rkt")
+(require "../parse-xml.rkt")
+(require racket/port)
 
-(define q
-  (add-filter-used
-      (add-keyword base-url "shellcoder")))
-
-(define xml (get-url q))
+(define input (port->string (open-input-file "input")))
 
 (define items
   (convert-currency
     (ship-to-uk-only
-      (xml->items xml))))
+      (xml->items input))))
 
 (for ([n  items])
         (displayln "########################################")
