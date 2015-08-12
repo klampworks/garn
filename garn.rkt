@@ -2,6 +2,7 @@
 (require "build-query.rkt")
 (require "get-url.rkt")
 (require "parse-xml.rkt")
+(require "config.rkt")
 
 (define keywords (vector-ref (current-command-line-arguments) 0))
 
@@ -12,9 +13,8 @@
 (define xml (get-url q))
 
 (define items
-  (convert-currency
-    (ship-to-uk-only
-      (xml->items xml))))
+  (apply-filters
+    (xml->items xml)))
 
 (for ([n  items])
         (displayln "########################################")
